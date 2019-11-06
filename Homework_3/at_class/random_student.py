@@ -20,3 +20,5 @@ print(stud_dict)
 for name in stud_dict:
     print("Student {name} has aeverge mark {mark}".format(
         name=name, mark=sum(stud_dict.get(name))/len(stud_dict.get(name))))
+
+print("All done")
