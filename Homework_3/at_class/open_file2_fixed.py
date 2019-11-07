@@ -2,7 +2,7 @@
 
 import sys
 
-# дlets open file (option 'r')
+# lets open file (option 'r')
 f = open(sys.argv[1], 'r')
 for line in f:  # read each line from file
     li = [int(x) for x in line.split()]

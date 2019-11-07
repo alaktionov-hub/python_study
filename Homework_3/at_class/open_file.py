@@ -3,7 +3,7 @@
 import sys
 filename = sys.argv[1]
 
-# дlets open file (option 'r')
+# lets open file (option 'r')
 f = open(filename, 'r')
 for line in f:  # read each line from file
     print(line)  # Print this line
