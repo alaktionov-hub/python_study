@@ -11,15 +11,20 @@ file_with_fuzz_buzz = open(filename, 'w')
 filename2 = sys.argv[3]  # What File we need use. Argument 1
 where_keep_answer = open(filename2, 'w')
 
+what_fizz_number_start = 1
+what_fizz_number_end = 2
+what_buzz_number_start = 4
+what_buzz_number_end = 5
+what_third_number_start = 6
+what_third_number_end = 9
+# what_fizz_number_start = int(input("Tell me please start of Fizz range?: "))
+# what_fizz_number_end = int(input("Tell me please end of Fizz range?: "))
 
-what_fizz_number_start = int(input("Tell me please start of Fizz range?: "))
-what_fizz_number_end = int(input("Tell me please end of Fizz range?: "))
+# what_buzz_number_start = int(input("Tell me please start of Buzz range?: "))
+# what_buzz_number_end = int(input("Tell me please end of Buzz range?: "))
 
-what_buzz_number_start = int(input("Tell me please start of Buzz range?: "))
-what_buzz_number_end = int(input("Tell me please end of Buzz range?: "))
-
-what_third_number_start = int(input("Tell me please start of Fizz range?: "))
-what_third_number_end = int(input("Tell me please end of Fizz range?: "))
+# what_third_number_start = int(input("Tell me please start of Fizz range?: "))
+# what_third_number_end = int(input("Tell me please end of Fizz range?: "))
 
 
 # file_with_fuzz_buzz.write("Now the file has more content!")
@@ -43,17 +48,18 @@ def fizz_buzz(fizz, buzz, third_number):
 # While i less then our third_number + 1 we work in
     while i < (third_number+1):
         if i % fizz == 0 and i % buzz == 0:  # If i multiple to fizz and buzz at same time print FB
-            print("FB", end='',)
+            print("FB", end=' ',)
         elif i % fizz == 0:  # If i multiple to fizz only print F
-            print("F", end='',)
+            print("F", end=' ',)
         elif i % buzz == 0:  # If i multiple to buzz only print B
-            print("B", end='',)
+            print("B", end=' ',)
         else:   # If i do not multiple to any checks before that print this value
-            print(i, end='',)
+            print(i, end=' ',)
         i += 1  # i + 1 starting from 1 . And wait bevore i will be < that third_number what we input from keyb
 
 
-#
+file_with_fuzz_buzz = open(filename, 'r')
+
 # lets open file (option 'r')
 file_with_fuzz_buzz = open(filename, 'r')
 for line in file_with_fuzz_buzz:  # read each line from file
@@ -63,6 +69,9 @@ for line in file_with_fuzz_buzz:  # read each line from file
     # Pass each number to our function and convert it to int
     fizz_buzz(int(li[0]), int(li[1]), int(li[2]))
     print()
+    # sys.stdout = where_keep_answer  # - We can always send Stdout to file :)
+    # print >> where_keep_answer
+    # print(file=where_keep_answer)
 
 
 file_with_fuzz_buzz.close()  # and allways better close file

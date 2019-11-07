@@ -15,13 +15,13 @@ def fizz_buzz(fizz, buzz, third_number):
 # While i less then our third_number + 1 we work in
     while i < (third_number+1):
         if i % fizz == 0 and i % buzz == 0:  # If i multiple to fizz and buzz at same time print FB
-            print("FB", end='',)
+            print("FB", end=' ',)
         elif i % fizz == 0:  # If i multiple to fizz only print F
-            print("F", end='',)
+            print("F", end=' ',)
         elif i % buzz == 0:  # If i multiple to buzz only print B
-            print("B", end='',)
+            print("B", end=' ',)
         else:   # If i do not multiple to any checks before that print this value
-            print(i, end='',)
+            print(i, end=' ',)
         i += 1  # i + 1 starting from 1 . And wait bevore i will be < that third_number what we input from keyb
 
 
