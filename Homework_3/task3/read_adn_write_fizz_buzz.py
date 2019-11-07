@@ -64,18 +64,10 @@ for line in file_with_fuzz_buzz:  # read each line from file
     li = line.split()
     sys.stdout = where_keep_answer  # - We can always send Stdout to file :)
     # print(li)
-    # li = list(map(int, li))  # Map all from line
+    li = list(map(int, li))  # Map all from line
     # Pass each number to our function and convert it to int
+    # fizz_buzz(int(li[0]), int(li[1]), int(li[2]))
     fizz_buzz(int(li[0]), int(li[1]), int(li[2]))
-    # print(fizz_buzz(int(li[0]), int(li[1]), int(li[2])),
-    #      '', file = where_keep_answer)
     print()
-    #where_keep_answer = open("where_keep_answer", "a")
-    # print(file=where_keep_answer)
-    # print >> where_keep_answer
-    # print(file=where_keep_answer)
-    # print(a)
-    # res = list(filter(None, a))
-    # print(res)
 
 file_with_fuzz_buzz.close()  # and allways better close file
