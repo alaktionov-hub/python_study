@@ -4,8 +4,9 @@
 #
 import random  # Random module help us generate Fizz Buzz random in range
 import sys  # We need sis module to be able read from file
-filename = sys.argv[1]
-file_size = int(sys.argv[2])  # How many line will be in new file
+
+filename = sys.argv[1]  # What File we need use. Argument 1
+file_size = int(sys.argv[2])  # How many line will be in new file. Argument 2
 file_with_fuzz_buzz = open(filename, 'w')
 
 what_fizz_number_start = int(input("Tell me please start of Fizz range?: "))
