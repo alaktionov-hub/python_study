@@ -54,7 +54,7 @@ def fizz_buzz(fizz, buzz, third_number):
         elif i % buzz == 0:  # If i multiple to buzz only print B
             print("B", end=' ',)
         else:   # If i do not multiple to any checks before that print this value
-            print(i, end=' ',)
+            print(i, end='',)
         i += 1  # i + 1 starting from 1 . And wait bevore i will be < that third_number what we input from keyb
 
 
@@ -68,7 +68,10 @@ for line in file_with_fuzz_buzz:  # read each line from file
     li = list(map(int, li))  # Map all from line
     # Pass each number to our function and convert it to int
     fizz_buzz(int(li[0]), int(li[1]), int(li[2]))
+    # print(fizz_buzz(int(li[0]), int(li[1]), int(li[2])),
+    #      '', file = where_keep_answer)
     print()
+    # print(end="", file=where_keep_answer)
     # sys.stdout = where_keep_answer  # - We can always send Stdout to file :)
     # print >> where_keep_answer
     # print(file=where_keep_answer)
