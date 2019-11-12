@@ -2,6 +2,7 @@
 # Fixed version before its write via stdout
 import random  # Random module help us generate Fizz Buzz random in range
 import sys  # We need sis module to be able read from file
+import numpy as np  # need for generate file and write us a text
 
 filename = sys.argv[1]  # What File we need use. Argument 1
 filename2 = sys.argv[2]  # What File we need use. Argument 1
@@ -9,11 +10,11 @@ filename2 = sys.argv[2]  # What File we need use. Argument 1
 file_with_fuzz_buzz = open(filename, 'w')
 where_keep_answer = open(filename2, 'w')
 
-for line in range(1, 20+1):
-    # a = str(option1), str(option2), str(option3)
-    # file_with_fuzz_buzz.write(a)
-    file_with_fuzz_buzz.write("{var1} {var2} {var3} \n".format(
-        var1=random.randint(1, 5), var2=random.randint(1, 6), var3=random.randint(1, 20)))
+np.savetxt(file_with_fuzz_buzz, np.random.randint(
+    1, 20, size=(20, 3)), fmt="%s")
+
+
+# np.random will generat efor us all what we need
 
 # Now function return line . Need for fix file write
 
