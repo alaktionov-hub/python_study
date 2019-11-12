@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+# Fixed version before its write via stdout
 import random  # Random module help us generate Fizz Buzz random in range
 import sys  # We need sis module to be able read from file
 
@@ -20,18 +20,18 @@ for line in range(1, 20+1):
 
 def fizz_buzz(fizz, buzz, third_number):
     i = 1
-    line = ""
+    line = ""  # Create variables lin
     while i < (third_number+1):
         if i % fizz == 0 and i % buzz == 0:
-            line += "FB "
+            line += "FB "  # add to line
         elif i % fizz == 0:
-            line += "F "
+            line += "F "  # add to line
         elif i % buzz == 0:
-            line += "B "
+            line += "B "  # add to line
         else:
-            line += str(i) + " "
+            line += str(i) + " "  # add to line
         i += 1
-    return line
+    return line  # Function return line
 
 
 file_with_fuzz_buzz = open(filename, 'r')
