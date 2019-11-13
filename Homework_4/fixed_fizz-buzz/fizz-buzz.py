@@ -1,21 +1,18 @@
 #!/usr/bin/env python3
 
-import random  # Random module help us generate Fizz Buzz random in range
 import sys  # We need sis module to be able read from file
+import numpy as np  # need for generate file with fizz buzz
 
 
-filename = sys.argv[1]  # What File we need use. Argument 1
-filename2 = sys.argv[2]  # What File we need use. Argument 1
+filename_in = sys.argv[1]  # What File we need use. Argument 1
+filename_out = sys.argv[2]  # What File we need use. Argument 1
 
-file_with_fuzz_buzz = open(filename, 'w')
-where_keep_answer = open(filename2, 'w')
+file_with_fuzz_buzz = open(filename_in, 'w')
+where_keep_answer = open(filename_out, 'w')
 
-
-for line in range(1, 20+1):
-    # a = str(option1), str(option2), str(option3)
-    # file_with_fuzz_buzz.write(a)
-    file_with_fuzz_buzz.write("{var1} {var2} {var3} \n".format(
-        var1=random.randint(1, 5), var2=random.randint(1, 6), var3=random.randint(1, 20)))
+np.savetxt(file_with_fuzz_buzz, np.random.randint(
+    1, 12, size=(20, 3)), fmt="%s")
+file_with_fuzz_buzz.close()  # Always need close file becaus it save data
 
 
 def fizz_buzz(fizz, buzz, third_number):
@@ -32,19 +29,13 @@ def fizz_buzz(fizz, buzz, third_number):
             line += str(i) + " "
         i += 1
     return line
-    print(line)
 
-
-file_with_fuzz_buzz = open(filename, 'r')
 
 # lets open file (option 'r')
-file_with_fuzz_buzz = open(filename, 'r')
+file_with_fuzz_buzz = open(filename_in, 'r')
 for line in file_with_fuzz_buzz:  # read each line from file
     li = line.split()
-    li = list(map(int, li))  # Map all from line
-    # Pass each number to our function and convert it to int
-    # fizz_buzz(int(li[0]), int(li[1]), int(li[2]))
-#    where_keep_answer.write(fizz_buzz(int(li[0]), int(li[1]), int(li[2])))
     where_keep_answer.write(fizz_buzz(int(li[0]), int(li[1]), int(li[2]))+"\n")
 
 file_with_fuzz_buzz.close()
+where_keep_answer.close()
