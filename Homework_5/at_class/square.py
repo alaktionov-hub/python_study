@@ -18,7 +18,7 @@ def prime_factor(list):
         if i == 1:
             flip_flop = 1
         for j in range(2, i):  # from 2 to each number in i
-            if i % j == 0:
+            if i % j == 0:  # check if we can % on each on range from 2 to number what came
                 flip_flop = 1
                 break
         if flip_flop == 0:  # if still 0 uppend its ok for us
