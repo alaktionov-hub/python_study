@@ -11,25 +11,27 @@ def my_square(num):
 # Try find all prime number from given list
 
 
-def simple(list_num):
-    final_list = []
-    for i in list_num:
-        j = 1
-        li = []
-        for j in range(1, i+1):
+def prime_factor(list):
+    final_list = []  # create empty list
+    for i in list:
+        flip_flop = 0
+        if i == 1:
+            flip_flop = 1
+        for j in range(2, i):  # from 2 to each number in i
             if i % j == 0:
-                li.append(j)
-        if len(li) < 3:
-            final_list.append(i)
-    return(final_list)
+                flip_flop = 1
+                break
+        if flip_flop == 0:  # if still 0 uppend its ok for us
+            final_list.append(i)  # add each to list
+    return final_list
 
 
 # Just print what it have in our variables with list of prime number.
-print(simple(number_list))
-
+# print(simple(number_list))
+print(prime_factor(number_list))
 
 # Now we have variables where we map my_squer function with simple function what take all prime number from list
-squard_list = list(map(my_square, simple(number_list)))
+squard_list = list(map(my_square, prime_factor(number_list)))
 
 
 print(squard_list)
