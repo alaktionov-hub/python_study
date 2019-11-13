@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import math
 number_list = [2, 3, 34, 17, 29, 6, 12, 3, 4, 67, 98, 32, 5, 65, 7, 5, 4]
 
 # just ** any num what came
