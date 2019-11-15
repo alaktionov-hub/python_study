@@ -45,7 +45,14 @@ file_with_fuzz_buzz = open(filename_in, 'r')
 #             for li in file_with_fuzz_buzz]
 
 # file_with_fuzz_buzz.write(set(map(fizz_buzz, [for line in file_with_fuzz_buzz: line.split("")])))
-print(map(fizz_buzz, [for line in file_with_fuzz_buzz: line.split('')]))
+# print(map(fizz_buzz, [for line in file_with_fuzz_buzz: line.split('')]))
+# list([for line in file_with_fuzz_buzz line.split('')])
+
+points = [(int, line.split(' ')[:3]) for line in file_with_fuzz_buzz]
+print(map(fizz_buzz, points))
+
+# print(map(fizz_buzz, [for line in file_with_fuzz_buzz: line.split('')]))
+
 
 file_with_fuzz_buzz.close()
 where_keep_answer.close()
