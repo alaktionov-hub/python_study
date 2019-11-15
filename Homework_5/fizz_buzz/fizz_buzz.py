@@ -48,11 +48,34 @@ file_with_fuzz_buzz = open(filename_in, 'r')
 # print(map(fizz_buzz, [for line in file_with_fuzz_buzz: line.split('')]))
 # list([for line in file_with_fuzz_buzz line.split('')])
 
-points = [(int, line.split(' ')[:3]) for line in file_with_fuzz_buzz]
-print(map(fizz_buzz, points))
+# points = [line.split("") for line in file_with_fuzz_buzz]
+# print(points)
+# print(set(map(fizz_buzz(int(list[0]), int([1]), int([2])), [
+#      line.split() for line in file_with_fuzz_buzz])))
+
+
+def read_file(file_name):
+
+    for line in file_name:  # read each line from file
+        li = line.split()
+        # li = list(map(int, li))  # Map all from line
+        li = [int(x) for x in line.split()]
+    # print(li)
+    # return(int(li[0]), int(li[1]), int(li[2]))
+    return li
+
+
+# print(set(map(fizz_buzz, [line.split for line in file_with_fuzz_buzz])))
+
+
+print(set(map(fizz_buzz([0, 1, 2]), read_file(file_with_fuzz_buzz))))
+
+
+#    li=line.split()
+# list(map(int, li))
 
 # print(map(fizz_buzz, [for line in file_with_fuzz_buzz: line.split('')]))
+# li = line.split()
 
-
-file_with_fuzz_buzz.close()
-where_keep_answer.close()
+# file_with_fuzz_buzz.close()
+# where_keep_answer.close()
