@@ -67,7 +67,7 @@ def read_file(file_name):
 # print(set(map(fizz_buzz, [line.split for line in file_with_fuzz_buzz])))
 
 
-print(set(map(fizz_buzz([0, 1, 2]), read_file(file_with_fuzz_buzz))))
+print(set(map(fizz_buzz, read_file(file_with_fuzz_buzz))))
 
 
 #    li=line.split()
