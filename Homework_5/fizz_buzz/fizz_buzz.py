@@ -37,9 +37,15 @@ file_with_fuzz_buzz = open(filename_in, 'r')
 # for line in file_with_fuzz_buzz:  # read each line from file
 #    li = line.split()
 #    where_keep_answer.write(fizz_buzz(int(li[0]), int(li[1]), int(li[2]))+"\n")
-list_test = []
-list_test = [fizz_buzz(int(li[0]), int(li[1]), int(li[2]))
-             for li in file_with_fuzz_buzz]
+# read_file = file_with_fuzz_buzz.read().split()
+# what_calculate = [for line in file_with_fuzz_buzz: line.split("")]
+
+# list_test = []
+# list_test = [fizz_buzz(int(li[0]), int(li[1]), int(li[2]))
+#             for li in file_with_fuzz_buzz]
+
+# file_with_fuzz_buzz.write(set(map(fizz_buzz, [for line in file_with_fuzz_buzz: line.split("")])))
+print(map(fizz_buzz, [for line in file_with_fuzz_buzz: line.split('')]))
 
 file_with_fuzz_buzz.close()
 where_keep_answer.close()
