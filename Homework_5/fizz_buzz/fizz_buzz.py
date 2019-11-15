@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Still in work with it
 
 import sys  # We need sis module to be able read from file
 import numpy as np  # need for generate file with fizz buzz
