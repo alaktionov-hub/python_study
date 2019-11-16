@@ -2,7 +2,7 @@
 
 #
 #  NOT HOMEWORK
-#  Just try to play with some examples from internet
+#  Just try to play with some examples from friend
 #
 
 fizz = int(input("Please input fizz value: "))
