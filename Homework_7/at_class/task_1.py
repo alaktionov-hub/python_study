@@ -16,7 +16,7 @@ print("And now with Mark")
 
 # for i in students_with_mark:
 #    print(i + " "+str(sum(students_with_mark[i])/len(students_with_mark[i])))
-st_aver = {st: sum(
+h = {st: sum(
     students_with_mark[st])/len(students_with_mark[st]) for st in all_student}
 
 print(st_aver)
