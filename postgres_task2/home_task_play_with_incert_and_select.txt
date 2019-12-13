@@ -1,0 +1,249 @@
+alaktionov@firefly ~ $ sudo su postgres
+bash-5.0$ psql 
+psql: /usr/pgsql-11/lib/libpq.so.5: no version information available (required by psql)
+psql: /usr/pgsql-11/lib/libpq.so.5: no version information available (required by psql)
+could not change directory to "/home/alaktionov": Permission denied
+psql (11.6)
+Type "help" for help.
+
+postgres=# \l
+                                     List of databases
+      Name       |  Owner   | Encoding |   Collate   |    Ctype    |   Access privileges   
+-----------------+----------+----------+-------------+-------------+-----------------------
+ newtest         | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ postgres        | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ template0       | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/postgres          +
+                 |          |          |             |             | postgres=CTc/postgres
+ template1       | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/postgres          +
+                 |          |          |             |             | postgres=CTc/postgres
+ test            | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ test_from_class | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ tv_show_data    | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+(7 rows)
+
+postgres=# \c t
+template0        template1        test             test_from_class  tv_show_data     
+postgres=# \c tv_show_data 
+You are now connected to database "tv_show_data" as user "postgres".
+tv_show_data=# SELECT * FROM actors;
+ id |  name  | last_name  |       email        
+----+--------+------------+--------------------
+  1 | vanya  | shmatko    | shmat@tut.com
+  2 | Sergey | shmatko    | sergey@tut.com
+  3 | Marina | Laktionova | laktionova@tut.com
+
+
+tv_show_data=# insert into actors (name,last_name,email) values ('test1', 'test_last_name','test@test.com');
+INSERT 0 1
+
+
+tv_show_data=# SELECT * FROM actors;
+ id |  name  |    last_name    |       email        
+----+--------+-----------------+--------------------
+  1 | vanya  | shmatko         | shmat@tut.com
+  2 | Sergey | shmatko         | sergey@tut.com
+  3 | Marina | Laktionova      | laktionova@tut.com
+  4 | test1  | test_last_name  | test@test.com
+(4 rows)
+
+
+tv_show_data=# insert into actors (name,last_name,email) values ('test5', 'test_last_name5','test5@test.com'), ('test6', 'test_last_name6','test6@test.com'), ('test7', 'test_last_name7','test7@test.com');
+INSERT 0 3
+
+
+tv_show_data=# SELECT * FROM tv_show;
+ id | name | describe | actors_on_tv | producer 
+----+------+----------+--------------+----------
+(0 rows)
+
+tv_show_data=# insert into tv_show (name,describe) values ('test_tv_show1', 'boring tv show :( '), ('test_tv_show2', 'its even more boring than tv test tv sho1'), ('test_tv_show3', 'need stop watch this all boring staff');
+INSERT 0 3
+tv_show_data=# SELECT * FROM tv_show;
+ id |     name      |                 describe                  | actors_on_tv | producer 
+----+---------------+-------------------------------------------+--------------+----------
+  1 | test_tv_show1 | boring tv show :(                         |              | 
+  2 | test_tv_show2 | its even more boring than tv test tv sho1 |              | 
+  3 | test_tv_show3 | need stop watch this all boring staff     |              | 
+(3 rows)
+
+tv_show_data=# 
+
+
+tv_show_data=# insert into producer (name,last_name,email) values ('the_best_prod_ever', 'Ivanov','do_not_write_me@test.com'), ('the_most_skills_pord', 'Oh_here_mast_be_his_second_name','not_here@test.com'), ('And_me', 'not_me','not@here.com');
+INSERT 0 3
+tv_show_data=# SELECT * FRO
+
+tv_show_data=# SELECT * FROM producer;
+ id |         name         |            last_name            |          email           
+----+----------------------+---------------------------------+--------------------------
+  1 | Ivan                 | No                              | Ivan_v_derevnu@tut.com
+  2 | Tolik                | ignatov                         | v_derevnu@tut.com
+  4 | Kto-to               | ignatov                         | derevnu@tut.com
+  5 | ne_vanya             | ignatov                         | ne_vana_derevnu@tut.com
+  6 | the_best_prod_ever   | Ivanov                          | do_not_write_me@test.com
+  7 | the_most_skills_pord | Oh_here_mast_be_his_second_name | not_here@test.com
+  8 | And_me               | not_me                          | not@here.com
+(7 rows)
+
+tv_show_data=# 
+
+
+
+tv_show_data=# CREATE TABLE actors_for_test_tmp AS TABLE ACTORS WITH NO DATA;
+CREATE TABLE AS
+
+
+tv_show_data=# \dt
+                List of relations
+ Schema |        Name         | Type  |  Owner   
+--------+---------------------+-------+----------
+ public | actors              | table | postgres
+ public | actors_for_test_tmp | table | postgres
+ public | producer            | table | postgres
+ public | tv_show             | table | postgres
+(4 rows)
+
+
+tv_show_data=# insert into actors_for_test_tmp select * from actors;
+INSERT 0 10
+tv_show_data=# SELECT * FROM actors;
+ id |  name  |    last_name    |       email        
+----+--------+-----------------+--------------------
+  1 | vanya  | shmatko         | shmat@tut.com
+  2 | Sergey | shmatko         | sergey@tut.com
+  3 | Marina | Laktionova      | laktionova@tut.com
+  4 | test1  | test_last_name  | test@test.com
+  6 | test2  | test_last_name2 | test2@test.com
+  7 | test3  | test_last_name3 | test3@test.com
+  8 | test4  | test_last_name4 | test4@test.com
+ 12 | test5  | test_last_name5 | test5@test.com
+ 13 | test6  | test_last_name6 | test6@test.com
+ 14 | test7  | test_last_name7 | test7@test.com
+(10 rows)
+
+tv_show_data=# SELECT * FROM actors_;
+actors_for_test_tmp  actors_id_seq        
+tv_show_data=# SELECT * FROM actors_for_test_tmp;
+ id |  name  |    last_name    |       email        
+----+--------+-----------------+--------------------
+  1 | vanya  | shmatko         | shmat@tut.com
+  2 | Sergey | shmatko         | sergey@tut.com
+  3 | Marina | Laktionova      | laktionova@tut.com
+  4 | test1  | test_last_name  | test@test.com
+  6 | test2  | test_last_name2 | test2@test.com
+  7 | test3  | test_last_name3 | test3@test.com
+  8 | test4  | test_last_name4 | test4@test.com
+ 12 | test5  | test_last_name5 | test5@test.com
+ 13 | test6  | test_last_name6 | test6@test.com
+ 14 | test7  | test_last_name7 | test7@test.com
+(10 rows)
+
+
+tv_show_data=# SELECT DISTINCT name FROM actors;
+  name  
+--------
+ vanya
+ test5
+ test1
+ Sergey
+ test4
+ test3
+ test2
+ Marina
+ test6
+ test7
+(10 rows)
+
+tv_show_data=# SELECT DISTINCT last_name FROM actors ORDER BY last_name;
+    last_name    
+-----------------
+ Laktionova
+ shmatko
+ test_last_name
+ test_last_name2
+ test_last_name3
+ test_last_name4
+ test_last_name5
+ test_last_name6
+ test_last_name7
+(9 rows)
+
+tv_show_data=# 
+
+
+tv_show_data=# SELECT DISTINCT * FROM actors ORDER BY name;
+ id |  name  |    last_name    |       email        
+----+--------+-----------------+--------------------
+  3 | Marina | Laktionova      | laktionova@tut.com
+  2 | Sergey | shmatko         | sergey@tut.com
+  4 | test1  | test_last_name  | test@test.com
+  6 | test2  | test_last_name2 | test2@test.com
+  7 | test3  | test_last_name3 | test3@test.com
+  8 | test4  | test_last_name4 | test4@test.com
+ 12 | test5  | test_last_name5 | test5@test.com
+ 13 | test6  | test_last_name6 | test6@test.com
+ 14 | test7  | test_last_name7 | test7@test.com
+  1 | vanya  | shmatko         | shmat@tut.com
+(10 rows)
+
+tv_show_data=# 
+
+
+tv_show_data=# SELECT * FROM actors WHERE name = 'Marina';
+ id |  name  | last_name  |       email        
+----+--------+------------+--------------------
+  3 | Marina | Laktionova | laktionova@tut.com
+(1 row)
+
+tv_show_data=# 
+
+
+tv_show_data=# SELECT * FROM actors WHERE name = 'Marina' OR last_name = 'shmatko';
+ id |  name  | last_name  |       email        
+----+--------+------------+--------------------
+  1 | vanya  | shmatko    | shmat@tut.com
+  2 | Sergey | shmatko    | sergey@tut.com
+  3 | Marina | Laktionova | laktionova@tut.com
+(3 rows)
+
+tv_show_data=# 
+
+
+tv_show_data=# SELECT * FROM actors WHERE name = 'Marina' OR last_name = 'shmatko' OR email = 'test@test.com' ORDER BY name;
+ id |  name  |   last_name    |       email        
+----+--------+----------------+--------------------
+  3 | Marina | Laktionova     | laktionova@tut.com
+  2 | Sergey | shmatko        | sergey@tut.com
+  4 | test1  | test_last_name | test@test.com
+  1 | vanya  | shmatko        | shmat@tut.com
+(4 rows)
+
+ 
+tv_show_data=# SELECT DISTINCT * FROM actors WHERE name = 'Marina' OR last_name = 'shmatko' OR email = 'test@test.com' ORDER BY name  LIMIT 1 ; 
+ id |  name  | last_name  |       email        
+----+--------+------------+--------------------
+  3 | Marina | Laktionova | laktionova@tut.com
+(1 row)
+
+tv_show_data=# SELECT DISTINCT * FROM actors WHERE name = 'Marina' OR last_name = 'shmatko' OR email = 'test@test.com' ORDER BY name  LIMIT 1; 
+ id |  name  | last_name  |       email        
+----+--------+------------+--------------------
+  3 | Marina | Laktionova | laktionova@tut.com
+(1 row)
+
+tv_show_data=# SELECT DISTINCT * FROM actors WHERE name = 'Marina' OR last_name = 'shmatko' OR email = 'test@test.com' ORDER BY name  LIMIT 1 OFFSET 2; 
+ id | name  |   last_name    |     email     
+----+-------+----------------+---------------
+  4 | test1 | test_last_name | test@test.com
+(1 row)
+
+tv_show_data=# SELECT DISTINCT * FROM actors WHERE name = 'Marina' OR last_name = 'shmatko' OR email = 'test@test.com' ORDER BY name  LIMIT 2 OFFSET 2; 
+ id | name  |   last_name    |     email     
+----+-------+----------------+---------------
+  4 | test1 | test_last_name | test@test.com
+  1 | vanya | shmatko        | shmat@tut.com
+(2 rows)
+
+tv_show_data=# 
+
+
