@@ -39,7 +39,8 @@ fe.condition(20000, 'K')
 fe.condition(15, 'C')
 fe.condition(1699, 'C')
 
+print('\n''And lets test whats next''\n')
 
-print(fe.convert(200, 'F'))
-print(fe.convert(33, 'C'))
-print(fe.convert(12, 'K'))
+print(fe.convert(200, 'F'), '\n')
+print(fe.convert(33, 'C'), '\n')
+print(fe.convert(12, 'K'), '\n')
