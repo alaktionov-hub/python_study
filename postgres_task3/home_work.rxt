@@ -1,0 +1,221 @@
+homework_3=# CREATE DATABASE company_salary;
+CREATE DATABASE
+homework_3=# \c company_salary 
+You are now connected to database "company_salary" as user "postgres".
+company_salary=# 
+
+company_salary=# CREATE TABLE departman (id serial, name text, describe text, avg_paymant numeric);
+CREATE TABLE
+
+company_salary=# INSERT INTO departman (name,describe,avg_paymant) VALUES ('local_it','local id Admins','500'), ('HR','Human Research','3000'), ('GNS','Global network service','3000'),('Ecomerce','Ecomerce web departmant','2000'), ('Marketing','Research Marketing','1500'), ('devs','all devs C++ and php','5000')
+;
+INSERT 0 6
+
+company_salary=# CREATE TABLE employees (id serial, first_name text, last_name text, patronymic text, salary numeric, age numeric, departman text DEFAULT 'devs');
+CREATE TABLE
+
+company_salary=# INSERT INTO employees (first_name, last_name, patronymic, salary, age, departman) VALUES ('Anatoliy','Laktionov','Yurievich','3100','32','GNS'), ('Ivan','Novikov','Ivanovic','3800','35','GNS'),  ('Laktionova','Marina','Alexeevna','4000','31','devs'), ('Shmatko','Dmitryi','Serveivich','2500','27','devs'),  ('Ivanov','Ivan','Ivanovich','2100','45','HR'),  ('Egorov','Anatoliy','Sergeivich','3000','22','HR'),  ('Ignatov','Sergey','Yurievich','450','21','local_it'), ('Sergienko','Inna','Alexeevna','1700','35','Ecomerce'),  ('Kotko','Egor','Yurievich','1200','31','Marketing')
+;
+INSERT 0 9
+
+
+company_salary=# SELECT * from employees;                                                                                                                                                                                                                                                   id | first_name | last_name | patronymic | salary | age | departman 
+----+------------+-----------+------------+--------+-----+-----------
+  1 | Anatoliy   | Laktionov | Yurievich  |   3100 |  32 | GNS
+  2 | Ivan       | Novikov   | Ivanovic   |   3800 |  35 | GNS
+  3 | Laktionova | Marina    | Alexeevna  |   4000 |  31 | devs
+  4 | Shmatko    | Dmitryi   | Serveivich |   2500 |  27 | devs
+  5 | Ivanov     | Ivan      | Ivanovich  |   2100 |  45 | HR
+  6 | Egorov     | Anatoliy  | Sergeivich |   3000 |  22 | HR
+  7 | Ignatov    | Sergey    | Yurievich  |    450 |  21 | local_it
+  8 | Sergienko  | Inna      | Alexeevna  |   1700 |  35 | Ecomerce
+  9 | Kotko      | Egor      | Yurievich  |   1200 |  31 | Marketing
+(9 rows)
+
+company_salary=# SELECT * from departman;
+ id |   name    |        describe         | avg_paymant 
+----+-----------+-------------------------+-------------
+  1 | local_it  | local id Admins         |         500
+  2 | HR        | Human Research          |        3000
+  3 | GNS       | Global network service  |        3000
+  4 | Ecomerce  | Ecomerce web departmant |        2000
+  5 | Marketing | Research Marketing      |        1500
+  6 | devs      | all devs C++ and php    |        5000
+(6 rows)
+
+company_salary=# 
+
+company_salary=# SELECT * FROM employees INNER JOIN departman ON employees.departman = departman.name;
+ id | first_name | last_name | patronymic | salary | age | departman | id |   name    |        describe         | avg_paymant 
+----+------------+-----------+------------+--------+-----+-----------+----+-----------+-------------------------+-------------
+  7 | Ignatov    | Sergey    | Yurievich  |    450 |  21 | local_it  |  1 | local_it  | local id Admins         |         500
+  6 | Egorov     | Anatoliy  | Sergeivich |   3000 |  22 | HR        |  2 | HR        | Human Research          |        3000
+  5 | Ivanov     | Ivan      | Ivanovich  |   2100 |  45 | HR        |  2 | HR        | Human Research          |        3000
+  2 | Ivan       | Novikov   | Ivanovic   |   3800 |  35 | GNS       |  3 | GNS       | Global network service  |        3000
+  1 | Anatoliy   | Laktionov | Yurievich  |   3100 |  32 | GNS       |  3 | GNS       | Global network service  |        3000
+  8 | Sergienko  | Inna      | Alexeevna  |   1700 |  35 | Ecomerce  |  4 | Ecomerce  | Ecomerce web departmant |        2000
+  9 | Kotko      | Egor      | Yurievich  |   1200 |  31 | Marketing |  5 | Marketing | Research Marketing      |        1500
+  4 | Shmatko    | Dmitryi   | Serveivich |   2500 |  27 | devs      |  6 | devs      | all devs C++ and php    |        5000
+  3 | Laktionova | Marina    | Alexeevna  |   4000 |  31 | devs      |  6 | devs      | all devs C++ and php    |        5000
+(9 rows)
+
+company_salary=# 
+
+company_salary=# UPDATE employees SET first_name = 'Marina',  last_name = 'Laktionova' WHERE id=3;
+UPDATE 1
+company_salary=# UPDATE employees SET first_name = 'Dmitryi',  last_name = 'Shmatko' WHERE id=4;
+UPDATE 1
+company_salary=# UPDATE employees SET first_name = 'Inna',  last_name = 'Sergienko' WHERE id=8;
+UPDATE 1
+company_salary=# UPDATE employees SET first_name = 'Egor',  last_name = 'Kotko' WHERE id=9;
+UPDATE 1
+company_salary=# UPDATE employees SET first_name = 'Sergey',  last_name = 'Ignatov' WHERE id=7;
+UPDATE 1
+company_salary=# UPDATE employees SET first_name = 'Ivan',  last_name = 'Ivanov' WHERE id=5;
+UPDATE 1
+company_salary=# UPDATE employees SET first_name = 'Anatoliy',  last_name = 'Egorov' WHERE id=6;
+UPDATE 1
+
+
+company_salary=# SELECT * FROM employees INNER JOIN departman ON employees.departman = departman.name;
+ id | first_name | last_name  | patronymic | salary | age | departman | id |   name    |        describe         | avg_paymant 
+----+------------+------------+------------+--------+-----+-----------+----+-----------+-------------------------+-------------
+  7 | Sergey     | Ignatov    | Yurievich  |    450 |  21 | local_it  |  1 | local_it  | local id Admins         |         500
+  6 | Anatoliy   | Egorov     | Sergeivich |   3000 |  22 | HR        |  2 | HR        | Human Research          |        3000
+  5 | Ivan       | Ivanov     | Ivanovich  |   2100 |  45 | HR        |  2 | HR        | Human Research          |        3000
+  2 | Ivan       | Novikov    | Ivanovic   |   3800 |  35 | GNS       |  3 | GNS       | Global network service  |        3000
+  1 | Anatoliy   | Laktionov  | Yurievich  |   3100 |  32 | GNS       |  3 | GNS       | Global network service  |        3000
+  8 | Inna       | Sergienko  | Alexeevna  |   1700 |  35 | Ecomerce  |  4 | Ecomerce  | Ecomerce web departmant |        2000
+  9 | Egor       | Kotko      | Yurievich  |   1200 |  31 | Marketing |  5 | Marketing | Research Marketing      |        1500
+  4 | Dmitryi    | Shmatko    | Serveivich |   2500 |  27 | devs      |  6 | devs      | all devs C++ and php    |        5000
+  3 | Marina     | Laktionova | Alexeevna  |   4000 |  31 | devs      |  6 | devs      | all devs C++ and php    |        5000
+(9 rows)
+
+ company_salary=# SELECT  last_name || ' ' ||  upper(left(first_name,1)) || '.' || upper(left(patronymic,1))   as name, departman  FROM employees INNER JOIN departman ON employees.departman = departman.name;
+      name      | departman 
+----------------+-----------
+ Ignatov S.Y    | local_it
+ Egorov A.S     | HR
+ Ivanov I.I     | HR
+ Novikov I.I    | GNS
+ Laktionov A.Y  | GNS
+ Sergienko I.A  | Ecomerce
+ Kotko E.Y      | Marketing
+ Shmatko D.S    | devs
+ Laktionova M.A | devs
+(9 rows)
+
+company_salary=# INSERT INTO departman (name,describe,avg_paymant) VALUES ('SM','Studio Manager','7000');
+INSERT 0 1
+INSERT INTO employees (first_name,last_name,patronymic,salary,age,departman) VALUES ('Igor','trouble','trablovich','250','16','NO_NEDED_DEPATRMAN');
+INSERT 0 1
+
+
+company_salary=# SELECT  last_name || ' ' || upper(left(first_name,1)) || '.' || upper(left(patronymic,1))  as name, departman  FROM employees FULL JOIN departman ON employees.departman = departman.name;
+      name      |     departman      
+----------------+--------------------
+ Ignatov S.Y    | local_it
+ Egorov A.S     | HR
+ Ivanov I.I     | HR
+ Novikov I.I    | GNS
+ Laktionov A.Y  | GNS
+ Sergienko I.A  | Ecomerce
+ Kotko E.Y      | Marketing
+ Shmatko D.S    | devs
+ Laktionova M.A | devs
+                | 
+ trouble I.T    | NO_NEDED_DEPATRMAN
+(11 rows)
+
+company_salary=# 
+
+company_salary=# SELECT * FROM employees FULL JOIN departman ON employees.departman = departman.name;
+ id | first_name | last_name  | patronymic | salary | age |     departman      | id |   name    |        describe         | avg_paymant 
+----+------------+------------+------------+--------+-----+--------------------+----+-----------+-------------------------+-------------
+  7 | Sergey     | Ignatov    | Yurievich  |    450 |  21 | local_it           |  1 | local_it  | local id Admins         |         500
+  6 | Anatoliy   | Egorov     | Sergeivich |   3000 |  22 | HR                 |  2 | HR        | Human Research          |        3000
+  5 | Ivan       | Ivanov     | Ivanovich  |   2100 |  45 | HR                 |  2 | HR        | Human Research          |        3000
+  2 | Ivan       | Novikov    | Ivanovic   |   3800 |  35 | GNS                |  3 | GNS       | Global network service  |        3000
+  1 | Anatoliy   | Laktionov  | Yurievich  |   3100 |  32 | GNS                |  3 | GNS       | Global network service  |        3000
+  8 | Inna       | Sergienko  | Alexeevna  |   1700 |  35 | Ecomerce           |  4 | Ecomerce  | Ecomerce web departmant |        2000
+  9 | Egor       | Kotko      | Yurievich  |   1200 |  31 | Marketing          |  5 | Marketing | Research Marketing      |        1500
+  4 | Dmitryi    | Shmatko    | Serveivich |   2500 |  27 | devs               |  6 | devs      | all devs C++ and php    |        5000
+  3 | Marina     | Laktionova | Alexeevna  |   4000 |  31 | devs               |  6 | devs      | all devs C++ and php    |        5000
+    |            |            |            |        |     |                    |  7 | SM        | Studio Manager          |        7000
+ 10 | Igor       | trouble    | trablovich |    250 |  16 | NO_NEDED_DEPATRMAN |    |           |                         |            
+(11 rows)
+
+company_salary=# 
+
+company_salary=# SELECT * FROM employees LEFT JOIN departman ON employees.departman = departman.name;
+ id | first_name | last_name  | patronymic | salary | age |     departman      | id |   name    |        describe         | avg_paymant 
+----+------------+------------+------------+--------+-----+--------------------+----+-----------+-------------------------+-------------
+  7 | Sergey     | Ignatov    | Yurievich  |    450 |  21 | local_it           |  1 | local_it  | local id Admins         |         500
+  6 | Anatoliy   | Egorov     | Sergeivich |   3000 |  22 | HR                 |  2 | HR        | Human Research          |        3000
+  5 | Ivan       | Ivanov     | Ivanovich  |   2100 |  45 | HR                 |  2 | HR        | Human Research          |        3000
+  2 | Ivan       | Novikov    | Ivanovic   |   3800 |  35 | GNS                |  3 | GNS       | Global network service  |        3000
+  1 | Anatoliy   | Laktionov  | Yurievich  |   3100 |  32 | GNS                |  3 | GNS       | Global network service  |        3000
+  8 | Inna       | Sergienko  | Alexeevna  |   1700 |  35 | Ecomerce           |  4 | Ecomerce  | Ecomerce web departmant |        2000
+  9 | Egor       | Kotko      | Yurievich  |   1200 |  31 | Marketing          |  5 | Marketing | Research Marketing      |        1500
+  4 | Dmitryi    | Shmatko    | Serveivich |   2500 |  27 | devs               |  6 | devs      | all devs C++ and php    |        5000
+  3 | Marina     | Laktionova | Alexeevna  |   4000 |  31 | devs               |  6 | devs      | all devs C++ and php    |        5000
+ 10 | Igor       | trouble    | trablovich |    250 |  16 | NO_NEDED_DEPATRMAN |    |           |                         |            
+(10 rows)
+
+company_salary=# SELECT * FROM employees RIGHT JOIN departman ON employees.departman = departman.name;
+ id | first_name | last_name  | patronymic | salary | age | departman | id |   name    |        describe         | avg_paymant 
+----+------------+------------+------------+--------+-----+-----------+----+-----------+-------------------------+-------------
+  7 | Sergey     | Ignatov    | Yurievich  |    450 |  21 | local_it  |  1 | local_it  | local id Admins         |         500
+  6 | Anatoliy   | Egorov     | Sergeivich |   3000 |  22 | HR        |  2 | HR        | Human Research          |        3000
+  5 | Ivan       | Ivanov     | Ivanovich  |   2100 |  45 | HR        |  2 | HR        | Human Research          |        3000
+  2 | Ivan       | Novikov    | Ivanovic   |   3800 |  35 | GNS       |  3 | GNS       | Global network service  |        3000
+  1 | Anatoliy   | Laktionov  | Yurievich  |   3100 |  32 | GNS       |  3 | GNS       | Global network service  |        3000
+  8 | Inna       | Sergienko  | Alexeevna  |   1700 |  35 | Ecomerce  |  4 | Ecomerce  | Ecomerce web departmant |        2000
+  9 | Egor       | Kotko      | Yurievich  |   1200 |  31 | Marketing |  5 | Marketing | Research Marketing      |        1500
+  4 | Dmitryi    | Shmatko    | Serveivich |   2500 |  27 | devs      |  6 | devs      | all devs C++ and php    |        5000
+  3 | Marina     | Laktionova | Alexeevna  |   4000 |  31 | devs      |  6 | devs      | all devs C++ and php    |        5000
+    |            |            |            |        |     |           |  7 | SM        | Studio Manager          |        7000
+(10 rows)
+
+company_salary=# SELECT * FROM employees RIGHT JOIN departman ON employees.departman = departman.name ORDER by avg_paymant;
+ id | first_name | last_name  | patronymic | salary | age | departman | id |   name    |        describe         | avg_paymant 
+----+------------+------------+------------+--------+-----+-----------+----+-----------+-------------------------+-------------
+  7 | Sergey     | Ignatov    | Yurievich  |    450 |  21 | local_it  |  1 | local_it  | local id Admins         |         500
+  9 | Egor       | Kotko      | Yurievich  |   1200 |  31 | Marketing |  5 | Marketing | Research Marketing      |        1500
+  8 | Inna       | Sergienko  | Alexeevna  |   1700 |  35 | Ecomerce  |  4 | Ecomerce  | Ecomerce web departmant |        2000
+  2 | Ivan       | Novikov    | Ivanovic   |   3800 |  35 | GNS       |  3 | GNS       | Global network service  |        3000
+  1 | Anatoliy   | Laktionov  | Yurievich  |   3100 |  32 | GNS       |  3 | GNS       | Global network service  |        3000
+  5 | Ivan       | Ivanov     | Ivanovich  |   2100 |  45 | HR        |  2 | HR        | Human Research          |        3000
+  6 | Anatoliy   | Egorov     | Sergeivich |   3000 |  22 | HR        |  2 | HR        | Human Research          |        3000
+  4 | Dmitryi    | Shmatko    | Serveivich |   2500 |  27 | devs      |  6 | devs      | all devs C++ and php    |        5000
+  3 | Marina     | Laktionova | Alexeevna  |   4000 |  31 | devs      |  6 | devs      | all devs C++ and php    |        5000
+    |            |            |            |        |     |           |  7 | SM        | Studio Manager          |        7000
+
+company_salary=# SELECT * FROM employees RIGHT JOIN departman ON employees.departman = departman.name ORDER BY avg_paymant LIMIT 1;
+ id | first_name | last_name | patronymic | salary | age | departman | id |   name   |    describe     | avg_paymant 
+----+------------+-----------+------------+--------+-----+-----------+----+----------+-----------------+-------------
+  7 | Sergey     | Ignatov   | Yurievich  |    450 |  21 | local_it  |  1 | local_it | local id Admins |         500
+
+company_salary=# SELECT * FROM employees RIGHT JOIN departman ON employees.departman = departman.name ORDER BY avg_paymant DESC LIMIT 1;
+ id | first_name | last_name | patronymic | salary | age | departman | id | name |    describe    | avg_paymant 
+----+------------+-----------+------------+--------+-----+-----------+----+------+----------------+-------------
+    |            |           |            |        |     |           |  7 | SM   | Studio Manager |        7000
+
+company_salary=# SELECT * FROM employees FULL JOIN departman ON employees.departman = departman.name WHERE employees.departman IS NULL OR departman.name IS NULL;
+ id | first_name | last_name | patronymic | salary | age |     departman      | id | name |    describe    | avg_paymant 
+----+------------+-----------+------------+--------+-----+--------------------+----+------+----------------+-------------
+    |            |           |            |        |     |                    |  7 | SM   | Studio Manager |        7000
+ 10 | Igor       | trouble   | trablovich |    250 |  16 | NO_NEDED_DEPATRMAN |    |      |                |            
+(2 rows)
+
+ company_salary=# SELECT * FROM employees FULL JOIN departman ON employees.departman = departman.name WHERE salary < 1000 OR avg_paymant < 2000;
+ id | first_name | last_name | patronymic | salary | age |     departman      | id |   name    |      describe      | avg_paymant 
+----+------------+-----------+------------+--------+-----+--------------------+----+-----------+--------------------+-------------
+  7 | Sergey     | Ignatov   | Yurievich  |    450 |  21 | local_it           |  1 | local_it  | local id Admins    |         500
+  9 | Egor       | Kotko     | Yurievich  |   1200 |  31 | Marketing          |  5 | Marketing | Research Marketing |        1500
+ 10 | Igor       | trouble   | trablovich |    250 |  16 | NO_NEDED_DEPATRMAN |    |           |                    |            
+(3 rows)
+
+
+
+
