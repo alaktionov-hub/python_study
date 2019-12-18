@@ -23,6 +23,16 @@ class Ferum:
         else:
             print('Unknown system!')
 
+    def convert(self, temp, gr):
+        if gr not in ['F', 'C', 'K']:
+            raise ValueError
+        result = temp
+        if gr == 'K':
+            result = temp+273
+        elif gr == 'F':
+            result = temp*9/5+32
+        return result
+
 
 fe = Ferum()
-fe.condition(35)
+fe.condition(20000, 'K')
