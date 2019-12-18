@@ -246,4 +246,54 @@ tv_show_data=# SELECT DISTINCT * FROM actors WHERE name = 'Marina' OR last_name 
 
 tv_show_data=# 
 
+tv_show_data=# create table all_salary (id serial, position varchar(255), salary integer);
+CREATE TABLE
 
+INSERT INTO all_salary (position, salary) values ('producers', '7000'), ('actors', '3000') ('manager', '1500'); 
+
+tv_show_data=# INSERT INTO emploer (name,mail,position) values ('Alina', 'Alina@alina.com', 'manager'), ('Dima','dima@.com','actors'), ('Tolik','tolik@com','producers'), ('Marina','Marina@com','actors'), ('Jira','jura.com','actors'), ('Oleg','oleg@com','manager')
+tv_show_data-# ;
+INSERT 0 6
+
+
+tv_show_data=#  SELECT * FROM emploer INNER JOIN all_salary ON emploer.position = all_salary.position;
+ id |  name  |      mail       | position  | id | position  | salary 
+----+--------+-----------------+-----------+----+-----------+--------
+  3 | Tolik  | tolik@com       | producers |  1 | producers |   7000
+  5 | Jira   | jura.com        | actors    |  2 | actors    |   3000
+  4 | Marina | Marina@com      | actors    |  2 | actors    |   3000
+  2 | Dima   | dima@.com       | actors    |  2 | actors    |   3000
+  6 | Oleg   | oleg@com        | manager   |  3 | manager   |   1500
+  1 | Alina  | Alina@alina.com | manager   |  3 | manager   |   1500
+(6 rows)
+
+tv_show_data=# 
+
+tv_show_data=#  SELECT * FROM emploer INNER JOIN all_salary ON emploer.position = all_salary.position ORDER BY salary ASC;
+ id |  name  |      mail       | position  | id | position  | salary 
+----+--------+-----------------+-----------+----+-----------+--------
+  6 | Oleg   | oleg@com        | manager   |  3 | manager   |   1500
+  1 | Alina  | Alina@alina.com | manager   |  3 | manager   |   1500
+  5 | Jira   | jura.com        | actors    |  2 | actors    |   3000
+  4 | Marina | Marina@com      | actors    |  2 | actors    |   3000
+  2 | Dima   | dima@.com       | actors    |  2 | actors    |   3000
+  3 | Tolik  | tolik@com       | producers |  1 | producers |   7000
+(6 rows)
+
+tv_show_data=# 
+
+tv_show_data=# SELECT all_salary.position, SUM(salary) FROM emploer INNER JOIN all_salary ON emploer.position = all_salary.position GROUP BY all_salary.position;
+ position  | sum  
+-----------+------
+ actors    | 9000
+ manager   | 3000
+ producers | 7000
+(3 rows)
+
+tv_show_data=# SELECT all_salary.position, COUNT(*) FROM emploer INNER JOIN all_salary ON emploer.position = all_salary.position GROUP BY all_salary.position; 
+ position  | count 
+-----------+-------
+ actors    |     3
+ manager   |     2
+ producers |     1
+(3 rows)
