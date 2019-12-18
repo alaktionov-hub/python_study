@@ -1,16 +1,28 @@
 #!/usr/bin/env python3
-class MyFerum:
-    temp_pl = 1538
-    temp_isp = 2862
 
-    def condition(self, temp):
-        if temp < self.temp_pl:
-            print("solid")
-        elif temp > self.temp_isp and temp < self.temp_pl:
-            print("liguid")
+
+class Ferum:
+    t_pl = 1538
+    t_isp = 2862
+
+    def condition(self, temp, gr):
+        if gr == 'K' or gr == 'k':
+            if temp < self.t_pl+273:
+                print('solid')
+            elif temp > self.t_pl+272 and temp < self.t_isp+273:
+                print('liquid')
+            else:
+                print('vapor')
+        elif gr == 'C' or gr == 'c':
+            if temp < self.t_pl:
+                print('solid')
+            elif temp > self.t_pl-1 and temp < self.t_isp:
+                print('liquid')
+            else:
+                print('vapor')
         else:
-            print("vapor")
+            print('Unknown system!')
 
 
-run = MyFerum()
-run.condition(666)
+fe = Ferum()
+fe.condition(35)
