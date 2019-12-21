@@ -27,7 +27,7 @@ class Employee:
 
 class Recruter(Employee):
     def work(self):
-        print("Thanks haven i came to work, and now i can find some people who will work for us")
+        return super().work().replace(".", "and I can find some people who will work for us")
 
 # Task
 
