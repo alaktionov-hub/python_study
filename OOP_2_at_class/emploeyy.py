@@ -29,20 +29,31 @@ class Recruter(Employee):
     def work(self):
         return super().work().replace(".", "and I can find some people who will work for us")
 
-# Task
+    def __str__(self):
+        return "Hello, my name is " + self.name + " " + "And my mail " + self.email + "And you can call me " + self.phone + " and I work here on postition Recruter"
+
+        # Task
 
 
 class Programmer(Employee):
     def work(self):
         return super().work().replace(".", "and I can CODE")
 
+    def __str__(self):
+        return "Hello, my name is " + self.name + " " + "And my mail " + self.email + "And you can call me " + self.phone + " and I work here on position Programmer"
+
+
+print("Task print info for Recruter" + '\n')
 
 recruterHR = Recruter("Vasya", "HR@hell.com", "0668746111", 66.6)
 print(recruterHR.work())
+print(recruterHR.__str__())
 print(recruterHR.check_salary(666))  # Salary at hell
 
+print('\n' + "Task print info for Programmer" + '\n')
 
 programmer_Ivan = Programmer(
     "Ivan", "to_ivan@ne_tuda.com", "+41212234243", 133)
 print(programmer_Ivan.work())
+print(programmer_Ivan.__str__())
 print(programmer_Ivan.check_salary(6))
