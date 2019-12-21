@@ -32,6 +32,9 @@ class Recruter(Employee):
     def __str__(self):
         return "Hello, my name is " + self.name + " " + "And my mail " + self.email + "And you can call me " + self.phone + " and I work here on postition Recruter"
 
+    def __lt__(self, other):
+        return self.day_salary < other.day_salary
+
         # Task
 
 
@@ -42,6 +45,9 @@ class Programmer(Employee):
     def __str__(self):
         return "Hello, my name is " + self.name + " " + "And my mail " + self.email + "And you can call me " + self.phone + " and I work here on position Programmer"
 
+    def __lt__(self, other):
+        return self.day_salary < other.day_salary
+
 
 print("Task print info for Recruter" + '\n')
 
@@ -49,6 +55,14 @@ recruterHR = Recruter("Vasya", "HR@hell.com", "0668746111", 66.6)
 print(recruterHR.work())
 print(recruterHR.__str__())
 print(recruterHR.check_salary(666))  # Salary at hell
+
+
+print("Task print info for Recruter" + '\n')
+
+recruterHR2 = Recruter("Vasya", "HR@hell.com", "0668746111", 66.6)
+print(recruterHR2.work())
+print(recruterHR2.__str__())
+print(recruterHR2.check_salary(666))  # Salary at hell
 
 print('\n' + "Task print info for Programmer" + '\n')
 
