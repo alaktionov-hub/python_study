@@ -59,7 +59,7 @@ print(recruterHR.check_salary(666))  # Salary at hell
 
 print("Task print info for Recruter" + '\n')
 
-recruterHR2 = Recruter("Vasya", "HR@hell.com", "0668746111", 66.6)
+recruterHR2 = Recruter("Vasya", "HR@hell.com", "0668746111", 666.6)
 print(recruterHR2.work())
 print(recruterHR2.__str__())
 print(recruterHR2.check_salary(666))  # Salary at hell
@@ -71,3 +71,14 @@ programmer_Ivan = Programmer(
 print(programmer_Ivan.work())
 print(programmer_Ivan.__str__())
 print(programmer_Ivan.check_salary(6))
+
+print('\n' + "Task With Salary Compare" + '\n')
+if recruterHR < recruterHR2:
+    print("More big")
+
+# __lt__ lower
+# __gt__ grater
+# __eg__ equal
+# __le__ lower pr equal
+# __ge__ Grater or equal
+# __neg__ not qgual
