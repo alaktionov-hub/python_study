@@ -1,0 +1,66 @@
+postgres=# CREATE DATABASE exam;
+CREATE DATABASE
+
+postgres=# \c exam
+You are now connected to database "exam" as user "postgres".
+exam=# 
+
+exam=# CREATE TABLE town (id serial, town_name text);
+CREATE TABLE
+
+exam=# CREATE TABLE people  (id serial, gender varchar(5), name text, email text, town_id integer);
+CREATE TABLE
+
+exam=# INSERT INTO town (town_name) VALUES ('NEW VASYKI'), ('NEW Orlean'), ('TOWN1'), ('TOWN2'), ('TOWN3');
+INSERT 0 5
+
+exam=# INSERT INTO people (gender,name,email,town_id) VALUES ('man', 'Vasiliy', 'vas@tut.com', '2'), ('man', 'Vasiliy1', 'vas1@tut.com', '2'), ('man', 'Vasiliy2', 'vas2@tut.com', '2'), ('man', 'Vasiliy3', 'vas3@tut.com', '2'), ('man', 'Vasiliy4', 'vas4@tut.com', '2'), ('man', 'Vasiliy5', 'vas5@tut.com', '2'), ('man', 'Vasiliy6', 'vas6@tut.com', '2'), ('man', 'Vasiliy7', 'vas7@tut.com', '2'), ('man', 'Vasiliy8', 'vas8@tut.com', '2'), ('man', 'Vasiliy9', 'vas@tut.com', '2'), ('man', 'Vasiliy9', 'vas@tut.com', '2'),('man', 'Vetalik', 'vas@tut.com', '1'), ('man', 'Vetalik1', 'vas1@tut.com', '3'), ('man', 'Vetalik4', 'vas2@tut.com', '5'), ('man', 'Vetalik3', 'vas3@tut.com', '1'), ('man', 'Vetalik4', 'vas4@tut.com', '1'), ('man', 'Vetalik5', 'vas5@tut.com', '3'), ('man', 'Vetalik6', 'vas6@tut.com', '4'), ('man', 'Vetalik7', 'vas7@tut.com', '5'), ('man', 'Vetalik8', 'vas8@tut.com', '1'), ('man', 'Vetalik9', 'vas@tut.com', '1'), ('man', 'Vetalik9', 'vas@tut.com', '3'), ('woman', 'Olga', 'olga@tut.com', '1'), ('woman', 'Olga1', 'olga1@tut.com', '3'), ('woman', 'Olga4', 'olga2@tut.com', '5'), ('woman', 'Olga3', 'olga3@tut.com', '1'), ('woman', 'Olga4', 'olga4@tut.com', '1'), ('woman', 'Olga5', 'olga5@tut.com', '3'), ('woman', 'Olga6', 'olga6@tut.com', '4'), ('woman', 'Olga7', 'olga7@tut.com', '5'), ('woman', 'Olga8', 'olga8@tut.com', '1'), ('woman', 'Olga9', 'olga@tut.com', '1'), ('woman', 'Olga9', 'olga@tut.com', '3');
+
+
+ exam=# SELECT 'This is '|| name|| ', ' || CASE WHEN gender = 'man' THEN 'he' WHEN gender = 'woman' THEN 'she' END || ' has email '|| email as result FROM people INER JOIN town ON town.id = town_id;
+                   result                    
+---------------------------------------------
+ This is Olga9, she has email olga@tut.com
+ This is Olga8, she has email olga8@tut.com
+ This is Olga4, she has email olga4@tut.com
+ This is Olga3, she has email olga3@tut.com
+ This is Olga, she has email olga@tut.com
+ This is Vetalik9, he has email vas@tut.com
+ This is Vetalik8, he has email vas8@tut.com
+ This is Vetalik4, he has email vas4@tut.com
+ This is Vetalik3, he has email vas3@tut.com
+ This is Vetalik, he has email vas@tut.com
+ This is Vasiliy9, he has email vas@tut.com
+ This is Vasiliy9, he has email vas@tut.com
+ This is Vasiliy8, he has email vas8@tut.com
+ This is Vasiliy7, he has email vas7@tut.com
+ This is Vasiliy6, he has email vas6@tut.com
+ This is Vasiliy5, he has email vas5@tut.com
+ This is Vasiliy4, he has email vas4@tut.com
+ This is Vasiliy3, he has email vas3@tut.com
+ This is Vasiliy2, he has email vas2@tut.com
+ This is Vasiliy1, he has email vas1@tut.com
+ This is Vasiliy, he has email vas@tut.com
+ This is Olga9, she has email olga@tut.com
+ This is Olga5, she has email olga5@tut.com
+ This is Olga1, she has email olga1@tut.com
+ This is Vetalik9, he has email vas@tut.com
+ This is Vetalik5, he has email vas5@tut.com
+ This is Vetalik1, he has email vas1@tut.com
+ This is Olga6, she has email olga6@tut.com
+ This is Vetalik6, he has email vas6@tut.com
+ This is Olga7, she has email olga7@tut.com
+ This is Olga4, she has email olga2@tut.com
+ This is Vetalik7, he has email vas7@tut.com
+ This is Vetalik4, he has email vas2@tut.com
+(33 rows)
+
+
+
+ exam=# SELECT town_name, COUNT(*) as cnt FROM people FULL JOIN town ON town.id = town_id GROUP BY town_name HAVING COUNT(*) > 10 ORDER BY COUNT(*); 
+ town_name  | cnt 
+------------+-----
+ NEW Orlean |  11
+(1 row)
+
+exam=# 
