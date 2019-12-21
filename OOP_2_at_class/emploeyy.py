@@ -14,7 +14,7 @@ class Employee:
         self.day_salary = day_salary
 
     def work(self):
-        print("So I am here")
+        return("So I am here .")
 # ADD Class what will calculate salary for some days Calculate how mutch person get
 
     def check_salary(self, days):
@@ -34,15 +34,15 @@ class Recruter(Employee):
 
 class Programmer(Employee):
     def work(self):
-        print("Thanks haven i came to work, and now i can work !!! And be happy")
+        return super().work().replace(".", "and I can CODE")
 
 
 recruterHR = Recruter("Vasya", "HR@hell.com", "0668746111", 66.6)
-recruterHR.work()
+print(recruterHR.work())
 print(recruterHR.check_salary(666))  # Salary at hell
 
 
 programmer_Ivan = Programmer(
     "Ivan", "to_ivan@ne_tuda.com", "+41212234243", 133)
-programmer_Ivan.work()
+print(programmer_Ivan.work())
 print(programmer_Ivan.check_salary(6))
