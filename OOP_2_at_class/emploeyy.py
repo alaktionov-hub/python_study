@@ -62,9 +62,19 @@ class Programmer(Employee):
 
     def __str__(self):
         return "Hello, my name is " + self.name + " " + "And my mail " + self.email + "And you can call me " + self.phone + " and I work here on position Programmer"
+# Need find way to fix for compare also salary not only tech stack
 
     def __lt__(self, other):
         return self.day_salary < other.day_salary
+
+    def __gt__(self, other):
+        return len(self.data.get("tech_stack")) > len(other.data.get("tech_stack"))
+
+    def __lt__(self, other):
+        return len(self.data.get("tech_stack")) < len(other.data.get("tech_stack"))
+
+    def __eq__(self, other):
+        return len(self.data.get("tech_stack")) == len(other.data.get("tech_stack"))
 
 
 print("Task print info for Recruter" + '\n')
@@ -97,6 +107,10 @@ print('\n' + "Task print info for Programmer" + '\n')
 
 programmer_Ivan = Programmer(
     "Ivan", "to_ivan@ne_tuda.com", "+41212234243", 133, tech_stack=['c++', 'C', 'python'])
+
+programmer_Tolik = Programmer(
+    "Tolik", "Tolik@ne_tuda.com", "+41666666", 333, tech_stack=['c++', 'C', 'python', 'bash'])
+
 print(programmer_Ivan.work())
 print(programmer_Ivan.__str__())
 print(programmer_Ivan.check_salary(6))
@@ -105,6 +119,7 @@ print(programmer_Ivan.check_salary2())  # Salary at hell
 
 print('\n' + "test task 10" + '\n')
 print(programmer_Ivan.data.get('tech_stack'))
+print(programmer_Tolik.data.get('tech_stack'))
 print('\n' + "end task 10" + '\n')
 
 
@@ -113,9 +128,8 @@ print('\n' + "Task With Salary Compare" + '\n')
 if recruterHR < recruterHR2:
     print("More big")
 
-# __lt__ lower
-# __gt__ grater
-# __eg__ equal
-# __le__ lower pr equal
-# __ge__ Grater or equal
-# __neg__ not qgual
+
+# Compare Salary
+print('\n' + "Task 11 test" + '\n')
+if programmer_Ivan < programmer_Tolik:
+    print("More big")
