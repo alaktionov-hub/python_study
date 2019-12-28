@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from .employee import Employee
 
 
 class Recruter(Employee):
