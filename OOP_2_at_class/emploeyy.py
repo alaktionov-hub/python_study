@@ -129,7 +129,7 @@ if recruterHR < recruterHR2:
     print("More big")
 
 
-# Compare Salary
+# Compare tech stack
 print('\n' + "Task 11 test" + '\n')
 if programmer_Ivan < programmer_Tolik:
     print("More big")
