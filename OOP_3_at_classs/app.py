@@ -2,6 +2,7 @@
 from models.programmer import Programmer
 from models.recruter import Recruter
 from models.candidat import Candidat
+from models.vacancy import Vacancy
 
 # Allow you call this file from others modules
 if __name__ == '__main__':
@@ -57,3 +58,9 @@ if __name__ == '__main__':
     print(candidat_1.name + '\n')
     print(candidat_2.email + '\n')
     print(candidat_3.main_skill + '\n')
+
+    print('\n'+"TASK WITH Vacancy" + '\n')
+    vacancy_php = Vacancy("JAVA", "JAVA", "supperme")
+    vacancy_Cplus = Vacancy("lisp", "lisp", "junior")
+    print(vacancy_Cplus.title)
+    print(vacancy_php.main_skill)
