@@ -3,6 +3,9 @@ from models.programmer import Programmer
 from models.recruter import Recruter
 from models.candidat import Candidat
 from models.vacancy import Vacancy
+from models.check_email import check_emails
+from models.fix_email import fix_emails
+
 
 # Allow you call this file from others modules
 if __name__ == '__main__':
@@ -55,6 +58,8 @@ if __name__ == '__main__':
                           "[Java,k8s]", "[lisp]", "middle")
     candidat_3 = Candidat(
         "test3 test3", "test3_test3@test.com", "[Lisp,JS]", "[java]", "middle")
+    candidat_4 = Candidat(
+        "test3 test3", "test3_test3@test.com", "[Lisp,JS]", "[java]", "middle")
     print(candidat_1.name + '\n')
     print(candidat_2.email + '\n')
     print(candidat_3.main_skill + '\n')
@@ -64,3 +69,15 @@ if __name__ == '__main__':
     vacancy_Cplus = Vacancy("lisp", "lisp", "junior")
     print(vacancy_Cplus.title)
     print(vacancy_php.main_skill)
+
+    print('\n'+"Task with Mails" + '\n')
+    # if not check_emails(candidat_1.email, candidat_2.email, candidat_3.email, candidat_4.email):
+    #raise ValueError
+    if not check_emails(candidat_1.email, candidat_2.email, candidat_3.email):
+        raise ValueError
+    print('try 1 variant without error')
+    print(fix_emails(candidat_1, candidat_2, candidat_3))
+
+    print('\n'+"Task with Mails so lets try once more" + '\n')
+    # will rize error
+    print(fix_emails(candidat_1, candidat_2, candidat_3, candidat_4))
