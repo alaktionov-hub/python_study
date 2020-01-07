@@ -8,6 +8,11 @@ from models.all_people import Programmer
 from models.all_people import Recruiter
 from models.all_people import Candidate
 from models.vacancy import Vacancy
+from models.sqlite_connector import Sqlite_connector
+
+# Scripts
+SCRIPT_FOR_DB_CREATE = 'scripts/create_prod_db.py'
+LOG_FILE = 'logs/logs.txt'
 
 # Clean our tmp file before we write there somthing
 files_with_emails = open('emails', 'w+')
@@ -41,8 +46,19 @@ try:
         programmer_p1.validate()
         programmer_p2.validate()
 
+        #
+        exec(open(SCRIPT_FOR_DB_CREATE).read())
+        # Write to DB test
+        db_name = 'data/all_worker.db'  # So save all here
+        save_table_for_programmer = Sqlite_connector(
+            "programmers")  # Save for programmer table
+        save_table_for_programmer.add_to_db(programmer_p0, db_name)
+        save_table_for_programmer.add_to_db(programmer_p1, db_name)
+        save_table_for_programmer.add_to_db(programmer_p2, db_name)
+
+
 except ValueError as error:
-    with open('logs.txt', 'a+') as log_file:
+    with open(LOG_FILE, 'a+') as log_file:
         message = '{}   {}:\n {} \n\n'.format(
             datetime.datetime.now(),
             error.__class__.__name__,
@@ -50,7 +66,7 @@ except ValueError as error:
         )
         log_file.write(message)
 except TypeError as error:
-    with open('logs.txt', 'a+') as log_file:
+    with open(LOG_FILE, 'a+') as log_file:
         message = '{}   {}:\n {} \n\n'.format(
             datetime.datetime.now(),
             error.__class__.__name__,
@@ -58,7 +74,7 @@ except TypeError as error:
         )
         log_file.write(message)
 else:
-    with open('logs.txt', 'a+') as log_file:
+    with open(LOG_FILE, 'a+') as log_file:
         message = '{}:\n Unknown error'.format(
             datetime.datetime.now()
         )

@@ -2,3 +2,9 @@
 emails
 # no need store logs on git
 logs.txt
+# Some test db on script
+just_test.db
+
+# Off oll this directory
+data/
+logs/
