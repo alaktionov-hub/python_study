@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Need for calculate day off
 import datetime
 
 
@@ -29,6 +30,7 @@ class Employee:
 
     def work(self):
         return "I come to the office."
+# for Validate task . Check if mail what you pass to self contein in file with mails, raise Error then
 
     def validate(self):
         print(self.get_emails_from_file())
@@ -37,11 +39,13 @@ class Employee:
         else:
             print("Email was added to file!")
             self.save_email_to_file()
+# Save Mail to file mail . Will open file and save there line from self . (what came)
 
     def save_email_to_file(self):
         with open('emails', 'a') as f:
             f.write(self.email)
             f.write('\n')
+# Read all mails from file
 
     def get_emails_from_file(self):
         with open('emails', 'a+') as f:
