@@ -74,3 +74,7 @@ class Candidate:
     def __init__(self, first_name, last_name, email, phone, main_skill):
         super().__init__(first_name, last_name, email, phone)
         self.main_skill = main_skill
+# If you call work method wil show you error
+
+    def work(self):
+        raise ValueError
