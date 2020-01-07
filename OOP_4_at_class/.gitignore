@@ -1,2 +1,4 @@
 # No need emails . Just temp files for all
 emails
+# no need store logs on git
+logs.txt
