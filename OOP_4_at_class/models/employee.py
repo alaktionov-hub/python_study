@@ -42,13 +42,13 @@ class Employee:
 # Save Mail to file mail . Will open file and save there line from self . (what came)
 
     def save_email_to_file(self):
-        with open('emails', 'a') as f:
+        with open('data/emails', 'a') as f:
             f.write(self.email)
             f.write('\n')
 # Read all mails from file
 
     def get_emails_from_file(self):
-        with open('emails', 'a+') as f:
+        with open('data/emails', 'a+') as f:
             f.seek(0)
             data = f.read()
         return data.split('\n')

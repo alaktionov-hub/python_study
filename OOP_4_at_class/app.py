@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import datetime
 import traceback
+from pathlib import Path
 import sys
 
 # My modules
@@ -10,12 +11,16 @@ from models.all_people import Candidate
 from models.vacancy import Vacancy
 from models.sqlite_connector import Sqlite_connector
 
+# CREATE FOLDERS
+Path("logs/").mkdir(parents=True, exist_ok=True)
+Path("data/").mkdir(parents=True, exist_ok=True)
 # Scripts
 SCRIPT_FOR_DB_CREATE = 'scripts/create_prod_db.py'
 LOG_FILE = 'logs/logs.txt'
 
+
 # Clean our tmp file before we write there somthing
-files_with_emails = open('emails', 'w+')
+files_with_emails = open('data/emails', 'w+')
 files_with_emails.truncate(0)
 #
 try:
