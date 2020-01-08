@@ -11,8 +11,9 @@ class Employee:
         self.last_name = last_name
         self.email = email
         self.phone = phone
-
-    def working_days(self):
+# Task 5.2
+    @staticmethod
+    def working_days():
         # function that returns amount of working days in the month without some hilidays
         now = datetime.date.today()
         start_month = datetime.date(now.year, now.month, 1)
@@ -27,6 +28,15 @@ class Employee:
             if start_month + datetime.timedelta(day) in holidays:
                 working_days -= 1
         return working_days
+# Task 5.1
+    @property
+    def full_name(self):
+        return f"{self.first_name} {self.last_name}"
+# Task 5.1
+
+    @property
+    def full_name_and_date(self):
+        return f"{self.first_name} {self.last_name} {self.working_days()}"
 
     def work(self):
         return "I come to the office."

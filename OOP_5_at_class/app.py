@@ -61,6 +61,14 @@ try:
         save_table_for_programmer.add_to_db(programmer_p1, db_name)
         save_table_for_programmer.add_to_db(programmer_p2, db_name)
 
+        print("Task 5")
+        # TASK ON CLASS 5
+        print('\n'+"TASK 5.1 Show property class what return name and second name" + '\n')
+        print(programmer_p0.full_name)
+        print('\n'+"TASK 5.2 Statick for devs" + '\n')
+        print(programmer_p0.working_days())
+        print('\n'+"TASK 5.2 Statick for devs Attemp 2" + '\n')
+        print(programmer_p0.full_name_and_date)
 
 except ValueError as error:
     with open(LOG_FILE, 'a+') as log_file:
