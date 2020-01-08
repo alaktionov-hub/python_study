@@ -1,3 +1,5 @@
+import csv
+
 from .employee import Employee
 
 
@@ -78,3 +80,7 @@ class Candidate:
 
     def work(self):
         raise ValueError
+
+    @classmethod
+    def create_from_csv(cls, fp):
+        input_file = csv
