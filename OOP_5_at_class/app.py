@@ -36,14 +36,6 @@ try:
                                    "04-03-19", 71, "Java", tech_stack="[lisp,bash,SQL]", closed_this_month=2)
         programmer_p2 = Programmer("Programmer2", "Programmer2", "p2p2@gmail.com", "11-03-05-4",
                                    "06-06-18", 72, "Js", tech_stack="[C#,Java,lisp,pascal]", closed_this_month=3)
-# If you want test error with validate same email . Please uncomment next 4 line
-        # programmer_p4 = Programmer("Programmer4", "Programmer4", "p4p4@gmail.com", "01-11-11-2",
-        #                           "04-03-19", 71, "Java", tech_stack="[lisp,bash,SQL]", closed_this_month=2)
-        # programmer_p5 = Programmer("Programmer5", "Programmer5", "p4p4@gmail.com", "11-03-05-4",
-        #                           "06-06-18", 72, "Js", tech_stack="[C#,Java,lisp,pascal]", closed_this_month=3)
-        # programmer_p4.validate()
-        # programmer_p5.validate()
-        #
         print(programmer_p0.hired_at)
         print(programmer_p2.salary_per_day)
         # Validate  programmer
