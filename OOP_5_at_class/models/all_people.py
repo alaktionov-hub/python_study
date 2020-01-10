@@ -71,7 +71,7 @@ class Recruiter(Employee):
             return "Nobody was hired this month!"
 
 
-class Candidate:
+class Candidate(Employee):
     # in **data any additional information can be put
     def __init__(self, first_name, last_name, email, phone, main_skill):
         super().__init__(first_name, last_name, email, phone)
@@ -81,6 +81,20 @@ class Candidate:
     def work(self):
         raise ValueError
 
+    def __repr__(self):
+        return str(self.__dict__)
+
+# Task 5.3
     @classmethod
     def create_from_csv(cls, fp):
-        input_file = csv
+        with open(fp, newline='') as csvfile:
+            reader = csv.DictReader(csvfile)
+            list_of_candidates = []
+            for row in reader:
+                first_name = row["Full Name"].split(" ", 1)[0]
+                last_name = row["Full Name"].split(" ", 1)[1]
+                email = row["Email"]
+                main_skill = row["Main Skill"]
+                candidate = cls(first_name, last_name, email, "", main_skill)
+                list_of_candidates.append(candidate)
+            return list_of_candidates

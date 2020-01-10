@@ -16,10 +16,10 @@ createTableCandidates = "CREATE TABLE IF NOT EXISTS candidates (id serial, first
 
 createTableVacancies = "CREATE TABLE IF NOT EXISTS vacancies (id serial, title text, salary_per_day integer, main_skills text, technoloies text, recruiter text, hired_at text, status_of_vacncy boolean)"
 
-createTableIterviews = "CREATE TABLE IF NOT EXISTS iterviews (id serial, vacancy text, programer text, recruiter text, candidate text, datetime_of_int text, feedback text, result text)"
+createTableInterviews = "CREATE TABLE IF NOT EXISTS interviews (id serial, vacancy text, programer text, recruiter text, candidate text, datetime_of_int text, feedback text, result text)"
 
 cursorObject.execute(createTableProgrammers)
 cursorObject.execute(createTableRecruiters)
 cursorObject.execute(createTableCandidates)
 cursorObject.execute(createTableVacancies)
-cursorObject.execute(createTableIterviews)
+cursorObject.execute(createTableInterviews)

@@ -44,6 +44,7 @@ try:
         programmer_p2.validate()
 
         #
+
         exec(open(SCRIPT_FOR_DB_CREATE).read())
         # Write to DB test
         db_name = 'data/all_worker.db'  # So save all here
@@ -61,6 +62,9 @@ try:
         print(programmer_p0.working_days())
         print('\n'+"TASK 5.2 Statick for devs Attemp 2" + '\n')
         print(programmer_p0.full_name_and_date)
+        print('\n'+"TASK 5.3 use data from csv" + '\n')
+        print(Candidate.create_from_csv('data/candidates.csv'))
+
 
 except ValueError as error:
     with open(LOG_FILE, 'a+') as log_file:
