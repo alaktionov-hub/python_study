@@ -1,15 +1,19 @@
 #!/usr/bin/env python3
-import datetime
-import random
-import sqlite3
+import datetime  # date and time
+import random  # For random choose
+import sqlite3  # db Stotred on data
 
-# Enter all inputs for vacancy
+#
+# Db was need create and have Vacansy . And some programmers
+#
+
+# Get data from consloe
 vacancy_title = input('Enter title of vacancy! ')
 salary = int(input('Salary is  '))
 vacancy_main_skill = input('Main skill is ')
 vacancy_technologies = input('Enter technologies ')
 vacancy_recruiter = input('Recruiter is ')
-
+# Db connect
 conn = sqlite3.connect("data/all_worker.db")
 cursor = conn.cursor()
 cursor.execute("SELECT COUNT(*) FROM vacancies")
@@ -30,7 +34,6 @@ candidates_db = cursor.execute(
 candidates_list = []
 for candidate in candidates_db:
     candidates_list.append(candidate)
-# print(random.choice(candidates_list))
 
 # select all programmers from db with same main skill as for vacancy
 programmers_db = cursor.execute(
@@ -38,7 +41,6 @@ programmers_db = cursor.execute(
 programmers_list = []
 for programmer in programmers_db:
     programmers_list.append(programmer)
-# print(random.choice(programmers_list))
 
 # prepare params for adding to db
 cand = random.choice(candidates_list)[2]
