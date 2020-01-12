@@ -2,7 +2,6 @@
 """
 ASCII scene for character choose.
 """
-import time
 
 print(r"""
   _____ _                                                          _                          _            
