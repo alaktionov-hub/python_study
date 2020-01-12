@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+"""
+ASCII scene for Wizard win case.
+"""
 print(r"""
 __          ___                  _                         _   _     _       _           _   _   _      
 \ \        / (_)                | |                       | | | |   (_)     | |         | | | | | |     

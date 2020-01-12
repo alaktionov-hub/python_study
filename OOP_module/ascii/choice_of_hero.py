@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+"""
+ASCII scene for character choose.
+"""
 import time
 
 print(r"""
