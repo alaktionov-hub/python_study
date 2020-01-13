@@ -16,3 +16,6 @@ def clear_screen():
 
     # Action
     return subprocess.call(command) == 0
+
+
+clear_screen()

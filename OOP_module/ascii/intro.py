@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """
-ASCII scene for intro .
+ASCII scene for game begining
 """
 import time
+from clear_screen import clear_screen
+
 print(r"""
                                              ..ed$$$$$$$ee.
                                           zd$$*"".$$*$$F"**$$e.
@@ -40,10 +42,11 @@ print(r"""
                   \_____/_/    \_\_|  |_|______|_____/     |_____/   |_|   \____/|_____/_____\____/ 
 
 """)
-time.sleep(1)
+time.sleep(2)
 
 print('\n'+'\n')
 
+clear_screen()
 time.sleep(1)
 print(r"""
                         _____  _____   _____ ______ _   _ _______    _____          __  __ ______ 
@@ -65,9 +68,8 @@ print(r"""
                                                   \_/\_/ |_| \_/\_/  
                                                                      """)
 
-time.sleep(1)
-print('\n' + '\n' + '\n')
-
+time.sleep(2)
+clear_screen()
 print(r"""
                                    _______                       _             _   
                                   |__   __|                     | |           | |  

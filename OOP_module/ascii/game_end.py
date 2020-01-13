@@ -2,6 +2,10 @@
 """
 ASCII scene for GAMOVER .
 """
+
+import time
+from clear_screen import clear_screen
+
 print(r"""
 
                  _____          __  __  ______      ________ _____  
@@ -43,3 +47,27 @@ print(r"""
                                  .'    '.   '.
                                 (________)____)
 			""")
+
+time.sleep(5)
+clear_screen()
+
+print(r"""
+
+                           _
+                          ( )
+                           H
+                           H
+                          _H_
+                       .-'-.-'-.
+                      /         \
+                     |           |
+                     |   .-------'._
+                     |  / /  '.' '. \
+                     |  \ \ @   @ / /
+                     |   '---------'
+                     |    _______|
+                     |  .'-+-+-+|
+                     |  '.-+-+-+|         Higher nose Leather bag !!!!!!!
+                     |    """""" |           You can Always try once more ;)
+                     '-.__ _ __.-'      see you loser!
+                                                        """)
