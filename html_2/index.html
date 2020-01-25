@@ -13,19 +13,33 @@
 
 <body>
 
-	<div class="alert alert-primary" role="alert">
-		A simple primary alert—check it out!
-	</div>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="#">Navbar</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<div class="nav-link"> </div>
+				</li>
+			</ul>
+			<form class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+			</form>
+		</div>
+	</nav>
 
 	<div class="card" style="width: 18rem;">
 		<div class="card-body">
-			<h5 class="card-title">Card title</h5>
 			<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-			<p <form id="form1">
+			<form id="form1">
 				<div class="form-group">
 					<label for="exampleInputEmail1">Email address</label>
 					<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-
 				</div>
 				<div class="form-group">
 					<label for="exampleInputPassword1">Password</label>
@@ -35,17 +49,26 @@
 					<input type="checkbox" class="form-check-input" id="exampleCheck1">
 					<label class="form-check-label" for="exampleCheck1">Check me out</label>
 				</div>
-				<button type="submit" class="btn btn-primary">Submit</button>
-				</form>
+				<button type="submit" class="btn btn-primary">Log in</button>
+			</form>
 			</p>
+			<a href="#" class="card-link">Register</a>
+			<a href="#" class="card-link">Wtf?</a>
+		</div>
+	</div>
+	</div>
+	<div id="console"></div>
+
+	<div class="card" style="width: 18rem;">
+		<div class="card-body">
+			<h5 class="card-title">Card title</h5>
+			<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+			<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+				content.</p>
 			<a href="#" class="card-link">Card link</a>
 			<a href="#" class="card-link">Another link</a>
 		</div>
-		<div id="console"></div>
 	</div>
-
-
-
 
 
 </body>
