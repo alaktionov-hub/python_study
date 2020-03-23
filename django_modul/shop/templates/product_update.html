@@ -1,0 +1,32 @@
+ ￼
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="{% url 'product_update' object.id %}" method="post">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="row" style="padding:5px; height:50px;">
+        <div class="col-1"></div>
+        <div class="col-3">
+            {{field.label}}:
+        </div>
+        <div class="col-8" style="height:50px;">
+            {{field}}
+        </div>
+    </div>
+    {% endfor %}
+    <div class="row" style="padding:20px 0 0 0;">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <input type="submit" value="Update"
+                   style="font-size: 20px; color:white; background-color: rgb(61, 43, 28);">
+        </div>
+        <div class="col-1"></div>
+    </div>
+</form>
+{% endblock %}
+
+{% block links %}
+<a href="{% url 'index' %}">To main page</a>
+<a href="{% url 'products_list' %}">To list of products</a>
+{% endblock%}

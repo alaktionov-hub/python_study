@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="font-size: 40px; text-align:center; padding:20px;">
+    Login
+</div>
+<form action="/login/" method="POST">
+    {% for field in form %}
+    <div>
+        <div class="row" style="padding:5px">
+        <div class="col-2"></div>
+            <div class="col-4">
+            {{field.label}}:
+        </div>
+        <div class="col-4">
+            {{field}}
+        </div>
+            <div class="col-2"></div>
+    </div>
+    </div>
+    {% endfor %}
+    {% csrf_token %}
+    <div style="text-align:center; padding:20px;">
+    <button>Login</button>
+    </div>
+</form>
+{% endblock %}
+
+{% block links %}
+<a href="{% url 'index' %}">To main page</a>
+<a href="{% url 'products_list' %}">To list of products</a>
+{% endblock%}

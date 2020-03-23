@@ -1,0 +1,102 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row" style="border:solid 1px rgb(61, 43, 28); border-radius:10px; font-weight:bold;
+    padding:20px; text-align:center; margin:0px;">
+    <div class="col-3">
+        Picture
+    </div>
+    <div class="col-3">
+        Name
+    </div>
+    <div class="col-1">
+        Price
+    </div>
+    <div class="col-1">
+        Available
+    </div>
+    <div class="col-1">
+        {% if request.user.is_authenticated %}
+        Number
+        {% endif %}
+    </div>
+    <div class="col-3">
+    </div>
+
+</div>
+{% for object in page_obj %}
+<div class="row" style="font-size:18px; padding:10px; text-align:center;">
+    <div class="col-3">
+        <img src="{% if object.picture %}{{ object.picture.url }}{% endif %}" width="150">
+    </div>
+    <div class="col-3">
+        {{object.title}}
+    </div>
+    <div class="col-1">
+        {{object.price}}
+    </div>
+    <div class="col-1">
+        {{object.quantity}}
+    </div>
+    <div class="col-2">
+        {% if request.user.is_authenticated %}
+        <form method="post" action="{% url 'purchase_create' %}">
+            <div class="row">
+                <div class="col-6">
+                    {% csrf_token %}
+                    {{ purchase_form.cnt }}
+                    {{ purchase_form.product.as_hidden }}
+                    <input type="hidden" value="{{object.id}}" name="product" id="id_product">
+                </div>
+                <div class="col-6">
+                    <input type="submit" value="Buy"
+                           style="font-size: 20px; color:white; background-color: rgb(61, 43, 28);">
+                </div>
+            </div>
+        </form>
+        {% endif %}
+    </div>
+
+    <div class="col-1"></div>
+    <div class="col-1">
+        {% if request.user.is_superuser %}
+        <form method="post" action="{% url 'product_update' object.id %}">
+            {% csrf_token %}
+            <button><i class="fas fa-edit"></i></button>
+        </form>
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+<div class="row" style="padding:30px 0 0 0;">
+    <div class="col-1"></div>
+    <div class="col-10">
+        <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+        </div>
+    </div>
+    <div class="col-1"></div>
+</div>
+{% endblock %}
+
+{% block links %}
+<a href="{% url 'index' %}">To main page</a>
+{% if request.user.is_superuser %}
+<a href="{% url 'product_create' %}">New product</a>
+{% endif %}
+{% endblock%}

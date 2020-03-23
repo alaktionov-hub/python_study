@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-7" style="text_align:center;">
+<img src="../media/Patriot_Ordnance_Factory_Logo.jpg" style=" border: solid 1px rgb(61, 43, 28); border-radius:10px;">
+        </div>
+<div class="col-5" style="color:rgb(61, 43, 28); text-align:center; font-size:25px;">
+    <table height="200" style="vertical-align:center;">
+        <br>
+        <tr><a href="{% url 'products_list' %}">Link to list of products here</a></tr>
+    </table>
+</div>
+</div>
+{% endblock %}

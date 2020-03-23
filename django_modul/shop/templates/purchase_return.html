@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row" style="border:solid 1px rgb(61, 43, 28); border-radius:10px; font-weight:bold;
+    padding:20px; text-align:left; margin:0px;">
+    <div class="col-2">
+        Customer
+    </div>
+    <div class="col-2">
+        Product
+    </div>
+    <div class="col-2">
+        Time
+    </div>
+    <div class="col-1">
+        Price
+    </div>
+    <div class="col-1">
+        Quantity
+    </div>
+    <div class="col-1">
+        Total
+    </div>
+    <div class="col-1"></div>
+    <div class="col-1">
+        {% if request.user.is_authenticated %}
+        Delete
+        {% endif %}
+    </div>
+    <div class="col-1"></div>
+</div>
+{% for object in page_obj %}
+<div class="row" style="padding:5px; font-size:15px; text-align:left;">
+    <div class="col-2" style="font-weight:bold;">
+        {{object.customer.username}}
+    </div>
+    <div class="col-2">
+        {{object.product.title}}
+    </div>
+    <div class="col-2">
+        {{object.create_at}}
+    </div>
+    <div class="col-1">
+        {{object.product.price}}
+    </div>
+    <div class="col-1">
+        {{object.cnt}}
+    </div>
+    <div class="col-1">
+        {% widthratio object.product.price 1 object.cnt %}
+    </div>
+    <div class="col-1"></div>
+    <div class="col-1">
+        {% if request.user.is_superuser %}
+        <form method="post" action="{% url 'purchase_deleting' object.id %}">
+            {% csrf_token %}
+            <input type="hidden" value="{{object.product.id}}" name="product" id="id_product">
+            <input type="hidden" value="{{object.customer.id}}" name="customer" id="id_customer">
+            <button><i class="far fa-trash-alt"></i></button>
+        </form>
+        {% endif %}
+    </div>
+    <div class="col-1"></div>
+</div>
+{% endfor %}
+<div class="row" style="padding:10px 0 0 20px;">
+    <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block links %}
+<a href="{% url 'index' %}">To main page</a>
+<a href="{% url 'products_list' %}">List of product</a>
+<a href="{% url 'purchase_deleted' %}">Returned purchases</a>
+{% endblock%}
